@@ -1,0 +1,73 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+    --bg-color: #080b12;
+    --surface-color: rgba(255, 255, 255, 0.03);
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --primary: #00f0ff;
+    --secondary: #8a2be2;
+    --text-main: #f0f4f8;
+    --text-muted: #9ba3af;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body {
+    background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(138, 43, 226, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.12), transparent 25%);
+    background-attachment: fixed;
+    display: flex; flex-direction: column; min-height: 100vh;
+}
+
+h1, h2, h3 { font-weight: 800; line-height: 1.2; }
+p { line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+a { text-decoration: none; color: var(--primary); transition: 0.3s ease; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.highlight { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* --- ANIMATIONS --- */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); } 50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.5); } }
+
+.hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+.show { opacity: 1; transform: translateY(0); }
+
+/* --- NAVBAR --- */
+nav {
+    position: fixed; top: 0; width: 100%; padding: 1.5rem 0;
+    background: rgba(8, 11, 18, 0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--surface-border); z-index: 1000;
+}
+.nav-content { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: var(--text-main); font-weight: 600; font-size: 0.95rem; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 600;
+    color: #fff; border: 2px solid var(--primary); border-radius: 30px; cursor: pointer;
+    transition: all 0.3s ease; animation: glowPulse 3s infinite; margin-top: 1rem;
+}
+.btn:hover { background: var(--primary); color: #000; transform: scale(1.05); }
+
+/* --- PAGE LAYOUTS --- */
+.page-header { padding: 150px 0 80px; text-align: center; border-bottom: 1px solid var(--surface-border); }
+.page-header h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+.content-section { padding: 6rem 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+.card {
+    background: var(--surface-color); border: 1px solid var(--surface-border);
+    padding: 3rem 2.5rem; border-radius: 20px; backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255, 255, 255, 0.05); }
+.card-icon { font-size: 3.5rem; margin-bottom: 1.5rem; display: inline-block; animation: float 6s ease-in-out infinite; }
+.card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+
+/* --- FOOTER --- */
+footer { margin-top: auto; background: #04060a; padding: 3rem 0; text-align: center; border-top: 1px solid var(--surface-border); }
